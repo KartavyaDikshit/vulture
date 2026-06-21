@@ -123,6 +123,10 @@ ok ".env written"
 log "starting compose stack (this may take 1-5 min on first run)"
 cd "$PROJECT_ROOT"
 
+# Force using the default docker daemon builder to ensure local base images are visible
+docker builder use default 2>/dev/null || true
+docker buildx use default 2>/dev/null || true
+
 # Ensure the agent base image exists (compose builds agents FROM it).
 if ! docker image inspect vulture-agent-base:latest >/dev/null 2>&1; then
     log "building vulture-agent-base:latest (one-time)"

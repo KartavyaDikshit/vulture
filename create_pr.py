@@ -1,5 +1,5 @@
 import urllib.request, json, os, ssl, shutil, subprocess
-ctx = ssl.create_default_context(); ctx.check_hostname = False; ctx.verify_mode = ssl.CERT_NONE
+ctx = ssl.create_default_context(); ctx.check_hostname = True; ctx.verify_mode = ssl.CERT_REQUIRED
 token = os.environ.get("GITHUB_TOKEN")
 try:
     subprocess.run(["python3", "-m", "pip", "install", "--break-system-packages", "pre-commit"], check=False, stdout=subprocess.DEVNULL)
